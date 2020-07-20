@@ -8,8 +8,22 @@ a.navbar-brand {
 }
 
 /* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+li > a {
+    background-color: #ee2b53;
+    color: white !important;
+    border-radius: 7px;
+    padding: 3px;
+    border: white 1px solid;
+}
+
+    li > a:hover {
+        cursor: pointer;
+        background-color: #b4d333;
+        border: black 1px solid;
+    }
+
+.logo {
+    max-height: 70px;
 }
 
 .btn-primary {
@@ -17,13 +31,6 @@ a {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
 /* Sticky footer styles
 -------------------------------------------------- */
 html {

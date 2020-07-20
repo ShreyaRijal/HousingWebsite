@@ -1,0 +1,9 @@
+﻿@model PropertiesForRent
+
+@{
+    ViewData["Title"] = "Rent a Property";
+    var propertyDetails = Model.Property.First();
+}
+
+
+<h2>@propertyDetails.AddressLine1, @propertyDetails.City, @propertyDetails.Country, @propertyDetails.PostCode</h2>

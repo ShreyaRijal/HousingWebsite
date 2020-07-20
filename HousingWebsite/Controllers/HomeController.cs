@@ -11,18 +11,30 @@ namespace HousingWebsite.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly RentalWebsiteContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(RentalWebsiteContext db)
         {
-            _logger = logger;
+            _db = db;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            List<PropertiesForRent> PropertiesForRent = _db.PropertiesForRent.ToList();
+            List<Property> Properties = _db.Property.ToList();
+
+            return View(PropertiesForRent);
         }
 
+        [HttpGet]
+        public IActionResult SpecificProperty(int RentalId)
+        {
+            PropertiesForRent pr = _db.PropertiesForRent.Where(p => p.Property.First().PropertyId == RentalId).FirstOrDefault();
+            List<Property> Properties = _db.Property.ToList();
+
+            return View(pr);
+        }
         public IActionResult Privacy()
         {
             return View();
