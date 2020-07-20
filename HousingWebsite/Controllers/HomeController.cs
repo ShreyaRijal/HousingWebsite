@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using HousingWebsite.Models;
+using System.IO;
 
 namespace HousingWebsite.Controllers
 {
@@ -22,18 +23,68 @@ namespace HousingWebsite.Controllers
         public IActionResult Index()
         {
             List<PropertiesForRent> PropertiesForRent = _db.PropertiesForRent.ToList();
-            List<Property> Properties = _db.Property.ToList();
+            List<Property> Properties = _db.Property.Where(x => x.PropertiesForRent != null && x.PropertiesForRent.Count > 0).ToList();
 
-            return View(PropertiesForRent);
+            RentalPropetiesViewModel propertiesViewModel = new RentalPropetiesViewModel
+            {
+                RentalProperties = new List<RentalPropertyViewModel>()
+            };
+
+            foreach (Property property in Properties)
+            {
+
+                RentalPropertyViewModel propertyViewModel = new RentalPropertyViewModel()
+                {
+                    PropertyId = property.PropertyId,
+                    AddressLine1 = property.AddressLine1,
+                    City = property.City,
+                    PostCode = property.PostCode,
+                    Country = property.Country,
+                    PropertyType = property.PropertyType,
+                    BuildDate = property.BuildDate,
+                    NoOfBedrooms = property.NoOfBedrooms,
+                    Garden = property.Garden,
+                    Parking = property.Parking,
+                    Epcrating = property.Epcrating,
+                    RentalId = property.PropertiesForRent.First().RentalId,
+                    PricePcm = property.PropertiesForRent.First().PricePcm,
+                    PetsAllowed = property.PropertiesForRent.First().PetsAllowed,
+                    PropertyAvailableFrom = property.PropertiesForRent.First().PropertyAvailableFrom,
+                    PropertyPhotos = property.PhotoRef                    
+                };
+                propertiesViewModel.RentalProperties.Add(propertyViewModel);
+            }
+
+            return View(propertiesViewModel);
         }
 
         [HttpGet]
         public IActionResult SpecificProperty(int RentalId)
         {
-            PropertiesForRent pr = _db.PropertiesForRent.Where(p => p.Property.First().PropertyId == RentalId).FirstOrDefault();
-            List<Property> Properties = _db.Property.ToList();
+            PropertiesForRent propertyForRent = _db.PropertiesForRent.Where(p => p.RentalId == RentalId).FirstOrDefault();
+            Property property = _db.Property.Where(p => p.PropertiesForRent.First().RentalId == RentalId).FirstOrDefault();
 
-            return View(pr);
+            RentalPropertyViewModel propertyViewModel = new RentalPropertyViewModel()
+            {
+                PropertyId = property.PropertyId,
+                AddressLine1 = property.AddressLine1,
+                City = property.City,
+                PostCode = property.PostCode,
+                Country = property.Country,
+                PropertyType = property.PropertyType,
+                BuildDate = property.BuildDate,
+                NoOfBedrooms = property.NoOfBedrooms,
+                Garden = property.Garden,
+                Parking = property.Parking,
+                Epcrating = property.Epcrating,
+                RentalId = property.PropertiesForRent.First().RentalId,
+                PricePcm = property.PropertiesForRent.First().PricePcm,
+                PetsAllowed = property.PropertiesForRent.First().PetsAllowed,
+                PropertyAvailableFrom = property.PropertiesForRent.First().PropertyAvailableFrom,
+                PropertyPhotos = property.PhotoRef
+            };
+
+            return View(propertyViewModel);
         }
         public IActionResult Privacy()
         {

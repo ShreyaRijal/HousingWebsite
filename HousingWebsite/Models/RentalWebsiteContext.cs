@@ -22,7 +22,7 @@ namespace HousingWebsite.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-OSA\\LOCALHOST;Database=RentalWebsite;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-OSA\\localhost;Database=RentalWebsite;Trusted_Connection=True;");
             }
         }
 
@@ -37,11 +37,11 @@ namespace HousingWebsite.Models
 
                 entity.Property(e => e.PropertyAvailableFrom).HasColumnType("datetime");
 
-                //entity.HasOne(d => d.Property)
-                //    .WithMany(p => p.PropertiesForRent)
-                //    .HasForeignKey(d => d.PropertyId)
-                //    .OnDelete(DeleteBehavior.ClientSetNull)
-                //    .HasConstraintName("FK__Propertie__Prope__32E0915F");
+                entity.HasOne(d => d.Property)
+                    .WithMany(p => p.PropertiesForRent)
+                    .HasForeignKey(d => d.PropertyId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Propertie__Prope__32E0915F");
             });
 
             modelBuilder.Entity<Property>(entity =>
@@ -66,6 +66,10 @@ namespace HousingWebsite.Models
                     .IsUnicode(false)
                     .IsFixedLength();
 
+                entity.Property(e => e.PhotoRef)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.PostCode)
                     .HasMaxLength(20)
                     .IsUnicode(false);
@@ -73,17 +77,6 @@ namespace HousingWebsite.Models
                 entity.Property(e => e.PropertyType)
                     .HasMaxLength(255)
                     .IsUnicode(false);
-
-                entity.Property(e => e.PhotoRef)
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-
-                entity.HasOne(d => d.PropertiesForRent)
-                    .WithMany(p => p.Property)
-                    .HasForeignKey(d => d.PropertyId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Propertie__Prope__32E0915F");
             });
 
             OnModelCreatingPartial(modelBuilder);

@@ -1,27 +1,35 @@
 ﻿@{
     ViewData["Title"] = "Rent a Property";
 }
-@model IEnumerable<PropertiesForRent>
+@model RentalPropetiesViewModel
 
     <div class="text-center">
-        @foreach (var property in Model)
+        @foreach (var property in Model.RentalProperties)
         {
-            var propertyDetails = property.Property.First();
+
             var date = property.PropertyAvailableFrom;
-           
-        <a href="@Url.Action("SpecificProperty", "Home" , new {RentalId = property.RentalId})" >
+
+        <a href="@Url.Action("SpecificProperty", "Home", new { RentalId = property.RentalId })" >
                     <div class="card w-100 all-properties">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                @propertyDetails.AddressLine1,
-                                @propertyDetails.NoOfBedrooms Bed Property
-                            </h5>
-                            <p class="card-text">
-                                Property type: @propertyDetails.PropertyType,
-                                available at: @date.ToString().Substring(0, 11)
-                            </p>
+                        <div class="card-body card-horizontal">
+                            @{
+                                string imgUrl = "/Images/PropertyImages/" + property.PropertyPhotos + "/1.jpg";
+                            }
+                            <img style="width:200px;height:150px" src="@imgUrl" />
+                            <div class="card-body">
+
+                                <h5 class="card-title">
+                                    @property.AddressLine1,
+                                    @property.NoOfBedrooms Bed Property
+                                </h5>
+                                <p class="card-text">
+                                    <b>Property type:</b> @property.PropertyType,
+                                    <b>Available at:</b> @date.ToString().Substring(0, 11),
+                                    <b>PCM: </b>£@property.PricePcm 
+                                </p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
                 </a>
         }
     </div>
