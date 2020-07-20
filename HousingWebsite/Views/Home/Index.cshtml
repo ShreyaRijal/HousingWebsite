@@ -1,8 +1,27 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Rent a Property";
 }
+@model IEnumerable<PropertiesForRent>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="text-center">
+        @foreach (var property in Model)
+        {
+            var propertyDetails = property.Property.First();
+            var date = property.PropertyAvailableFrom;
+           
+        <a href="@Url.Action("SpecificProperty", "Home" , new {RentalId = property.RentalId})" >
+                    <div class="card w-100 all-properties">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                @propertyDetails.AddressLine1,
+                                @propertyDetails.NoOfBedrooms Bed Property
+                            </h5>
+                            <p class="card-text">
+                                Property type: @propertyDetails.PropertyType,
+                                available at: @date.ToString().Substring(0, 11)
+                            </p>
+                        </div>
+                    </div>
+                </a>
+        }
+    </div>

@@ -1,0 +1,9 @@
+﻿.all-properties {
+    text-align: left;
+    color:black;
+}
+    .all-properties:hover {
+        cursor: pointer;
+        background-color: #ffcccc;
+        border: black 1px solid;
+    }
