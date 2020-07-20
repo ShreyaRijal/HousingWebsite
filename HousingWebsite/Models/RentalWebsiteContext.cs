@@ -22,7 +22,7 @@ namespace HousingWebsite.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-KTSCAPN\\LOCALHOST;Database=RentalWebsite;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-OSA\\LOCALHOST;Database=RentalWebsite;Trusted_Connection=True;");
             }
         }
 
@@ -71,6 +71,10 @@ namespace HousingWebsite.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.PropertyType)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PhotoRef)
                     .HasMaxLength(255)
                     .IsUnicode(false);
 

@@ -21,6 +21,7 @@ namespace HousingWebsite.Models
         public bool? Garden { get; set; }
         public bool? Parking { get; set; }
         public string Epcrating { get; set; }
+        public string PhotoRef { get; set; }
 
         public virtual PropertiesForRent PropertiesForRent { get; set; }
         //public virtual ICollection<PropertiesForRent> PropertiesForRent { get; set; }
