@@ -6,12 +6,39 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200720212105_PhotosAdded.cs" />
+    <Compile Remove="Migrations\20200720212105_PhotosAdded.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\PropertyImages\0dd3791f-ee70-4351-a022-b4dafb22aa16\1.jpg" />
+    <None Include="wwwroot\Images\PropertyImages\0dd3791f-ee70-4351-a022-b4dafb22aa16\2.jpg" />
+    <None Include="wwwroot\Images\PropertyImages\0dd3791f-ee70-4351-a022-b4dafb22aa16\3.jpg" />
+    <None Include="wwwroot\Images\PropertyImages\20dfccbb-13b2-473a-b52f-9a01672e8564\1.jpg" />
+    <None Include="wwwroot\Images\PropertyImages\20dfccbb-13b2-473a-b52f-9a01672e8564\2.jpg" />
+    <None Include="wwwroot\Images\PropertyImages\20dfccbb-13b2-473a-b52f-9a01672e8564\3.jpg" />
+    <None Include="wwwroot\Images\PropertyImages\25d3d4de-3e8d-4d87-968c-1e8d5a6b303e\1.jpg" />
+    <None Include="wwwroot\Images\PropertyImages\25d3d4de-3e8d-4d87-968c-1e8d5a6b303e\2.jpg" />
+    <None Include="wwwroot\Images\PropertyImages\25d3d4de-3e8d-4d87-968c-1e8d5a6b303e\3.jpg" />
+    <None Include="wwwroot\Images\PropertyImages\35ac0f47-6d79-4ae6-bc6a-d2bb949be750\1.jpg" />
+    <None Include="wwwroot\Images\PropertyImages\35ac0f47-6d79-4ae6-bc6a-d2bb949be750\2.jpg" />
+    <None Include="wwwroot\Images\PropertyImages\35ac0f47-6d79-4ae6-bc6a-d2bb949be750\3.jpg" />
+    <None Include="wwwroot\Images\PropertyImages\d67dabf3-71b0-4783-a111-b3cafd686c0e\1.jpg" />
+    <None Include="wwwroot\Images\PropertyImages\d67dabf3-71b0-4783-a111-b3cafd686c0e\2.jpg" />
+    <None Include="wwwroot\Images\SystemImages\Common\placeholder.png" />
   </ItemGroup>
 
 </Project>

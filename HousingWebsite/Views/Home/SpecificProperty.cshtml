@@ -1,9 +1,61 @@
-﻿@model PropertiesForRent
+﻿@model RentalPropertyViewModel
 
 @{
     ViewData["Title"] = "Rent a Property";
-    var propertyDetails = Model.Property.First();
+
+    string imgUrl1 = "/Images/PropertyImages/" + Model.PropertyPhotos + "/1.jpg";
+    string imgUrl2 = "/Images/PropertyImages/" + Model.PropertyPhotos + "/2.jpg";
+    string imgUrl3 = "/Images/PropertyImages/" + Model.PropertyPhotos + "/3.jpg";
+
+    var date = Model.PropertyAvailableFrom;
+
+    var buildDate = Model.BuildDate;
+
+    var pets = "No";
+    if (Model.PetsAllowed == true)
+    {
+        pets = "Yes";
+    }
+
+    var parking = "No";
+    if (Model.Parking == true)
+    {
+        parking = "Yes";
+    }
+
+    var garden = "No";
+    if (Model.Garden == true)
+    {
+        garden = "Yes";
+    }
 }
 
 
-<h2>@propertyDetails.AddressLine1, @propertyDetails.City, @propertyDetails.Country, @propertyDetails.PostCode</h2>
+<h2>@Model.AddressLine1, @Model.City, @Model.Country, @Model.PostCode</h2>
+<br />
+<div class="photo-grid">
+    <img src="@imgUrl1" />
+    <img src="@imgUrl2" />
+    <img src="@imgUrl3" />
+</div>
+
+<br />
+<h4>Letting Information</h4>
+<div class="lettings-grid">
+    <p><b>Available at:</b> @date.ToString().Substring(0, 11)</p>
+    <p><b>PCM: </b>£@Model.PricePcm</p>
+    <p><b>Pets Allowed: </b>@pets</p>
+    <p></p>
+</div>
+<br />
+<h4>Property Information</h4>
+<div class="features-grid">
+    <p><b>Property type:</b> @Model.PropertyType</p>
+    <p><b>Number of Bedrooms:</b> @Model.NoOfBedrooms</p>
+    <p><b>Garden: </b>@garden</p>
+    <p><b>Parking: </b>@parking</p>
+    <p><b>EPC Rating:</b> @Model.Epcrating</p>
+    <p><b>BuildDate: </b>@buildDate.ToString().Substring(0, 11)</p>
+
+</div>
+
