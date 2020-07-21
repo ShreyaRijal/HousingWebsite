@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using HousingWebsite.Models;
 using System.IO;
+using HousingWebsite.Mappers;
 
 namespace HousingWebsite.Controllers
 {
@@ -32,26 +33,7 @@ namespace HousingWebsite.Controllers
 
             foreach (Property property in Properties)
             {
-
-                RentalPropertyViewModel propertyViewModel = new RentalPropertyViewModel()
-                {
-                    PropertyId = property.PropertyId,
-                    AddressLine1 = property.AddressLine1,
-                    City = property.City,
-                    PostCode = property.PostCode,
-                    Country = property.Country,
-                    PropertyType = property.PropertyType,
-                    BuildDate = property.BuildDate,
-                    NoOfBedrooms = property.NoOfBedrooms,
-                    Garden = property.Garden,
-                    Parking = property.Parking,
-                    Epcrating = property.Epcrating,
-                    RentalId = property.PropertiesForRent.First().RentalId,
-                    PricePcm = property.PropertiesForRent.First().PricePcm,
-                    PetsAllowed = property.PropertiesForRent.First().PetsAllowed,
-                    PropertyAvailableFrom = property.PropertiesForRent.First().PropertyAvailableFrom,
-                    PropertyPhotos = property.PhotoRef                    
-                };
+                RentalPropertyViewModel propertyViewModel = RentalPropertyMapper.MapPropertyToRentalPropertyVM(property);
                 propertiesViewModel.RentalProperties.Add(propertyViewModel);
             }
 
@@ -74,25 +56,7 @@ namespace HousingWebsite.Controllers
             PropertiesForRent propertyForRent = _db.PropertiesForRent.Where(p => p.RentalId == rentalId).FirstOrDefault();
             Property property = _db.Property.Where(p => p.PropertiesForRent.First().RentalId == rentalId).FirstOrDefault();
 
-            RentalPropertyViewModel propertyViewModel = new RentalPropertyViewModel()
-            {
-                PropertyId = property.PropertyId,
-                AddressLine1 = property.AddressLine1,
-                City = property.City,
-                PostCode = property.PostCode,
-                Country = property.Country,
-                PropertyType = property.PropertyType,
-                BuildDate = property.BuildDate,
-                NoOfBedrooms = property.NoOfBedrooms,
-                Garden = property.Garden,
-                Parking = property.Parking,
-                Epcrating = property.Epcrating,
-                RentalId = property.PropertiesForRent.First().RentalId,
-                PricePcm = property.PropertiesForRent.First().PricePcm,
-                PetsAllowed = property.PropertiesForRent.First().PetsAllowed,
-                PropertyAvailableFrom = property.PropertiesForRent.First().PropertyAvailableFrom,
-                PropertyPhotos = property.PhotoRef
-            };
+            RentalPropertyViewModel propertyViewModel = RentalPropertyMapper.MapPropertyToRentalPropertyVM(property);
 
             return View(propertyViewModel);
         }

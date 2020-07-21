@@ -12,7 +12,7 @@ li > a {
     background-color: #ee2b53;
     color: white !important;
     border-radius: 7px;
-    padding: 3px;
+    padding: 0.5em !important;
     border: white 1px solid;
 }
 

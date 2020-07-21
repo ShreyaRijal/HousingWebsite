@@ -21,6 +21,12 @@
     width: 40%;
 }
 
+@media(max-width:510px){
+    .search-btn{
+        font-size:xx-small;
+    }
+}
+
 .search-btn {
     background-color: #ee2b53;
     color: white;
