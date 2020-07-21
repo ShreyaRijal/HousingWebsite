@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace HousingWebsite.Models
 {
@@ -22,7 +23,11 @@ namespace HousingWebsite.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-OSA\\localhost;Database=RentalWebsite;Trusted_Connection=True;");
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                                                        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                                                        .AddJsonFile("appsettings.json")
+                                                        .Build();
+                optionsBuilder.UseSqlServer(configuration.GetConnectionString("HousingDatabase"));
             }
         }
 
