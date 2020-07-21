@@ -3,33 +3,42 @@
 }
 @model RentalPropetiesViewModel
 
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    <div class="navbar-nav ml-auto search">
+        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+        <button class="search-btn" type="submit">Search</button>
+    </div>
+}
+
+
     <div class="text-center">
         @foreach (var property in Model.RentalProperties)
         {
 
             var date = property.PropertyAvailableFrom;
 
-        <a href="@Url.Action("SpecificProperty", "Home", new { RentalId = property.RentalId })" >
-                    <div class="card w-100 all-properties">
-                        <div class="card-body card-horizontal">
-                            @{
-                                string imgUrl = "/Images/PropertyImages/" + property.PropertyPhotos + "/1.jpg";
-                            }
-                            <img style="width:200px;height:150px" src="@imgUrl" />
-                            <div class="card-body">
+            <a href="@Url.Action("SpecificProperty", "Home", new { rentalId = property.RentalId })">
+                <div class="card w-100 all-properties">
+                    <div class="card-body card-horizontal">
+                        @{
+                            string imgUrl = "/Images/PropertyImages/" + property.PropertyPhotos + "/1.jpg";
+                        }
+                        <img style="width:200px;height:150px" src="@imgUrl" />
+                        <div class="card-body">
 
-                                <h5 class="card-title">
-                                    @property.AddressLine1,
-                                    @property.NoOfBedrooms Bed Property
-                                </h5>
-                                <p class="card-text">
-                                    <b>Property type:</b> @property.PropertyType,
-                                    <b>Available at:</b> @date.ToString().Substring(0, 11),
-                                    <b>PCM: </b>£@property.PricePcm 
-                                </p>
-                                </div>
-                            </div>
+                            <h5 class="card-title">
+                                @property.AddressLine1,
+                                @property.NoOfBedrooms Bed Property
+                            </h5>
+                            <p class="card-text">
+                                <b>Property type:</b> @property.PropertyType,
+                                <b>Available at:</b> @date.ToString().Substring(0, 11),
+                                <b>PCM: </b>£@property.PricePcm
+                            </p>
                         </div>
-                </a>
+                    </div>
+                </div>
+            </a>
         }
     </div>

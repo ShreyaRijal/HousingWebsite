@@ -12,3 +12,25 @@
     display: flex;
     flex: 1 1 auto;
 }
+
+.search {
+    display:grid;
+    grid-template-columns:68% 30%;
+    column-gap:2%;
+    margin-bottom: 1em !important;
+    width: 40%;
+}
+
+.search-btn {
+    background-color: #ee2b53;
+    color: white;
+    border-radius: 7px;
+    padding: 6px;
+    border: white 1px solid;
+}
+
+    .search-btn:hover {
+        cursor: pointer;
+        background-color: #b4d333;
+        border: black 1px solid;
+    }

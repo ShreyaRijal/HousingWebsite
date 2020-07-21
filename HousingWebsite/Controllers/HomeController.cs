@@ -58,11 +58,21 @@ namespace HousingWebsite.Controllers
             return View(propertiesViewModel);
         }
 
-        [HttpGet]
-        public IActionResult SpecificProperty(int RentalId)
+        [HttpPost]
+        public IActionResult Index(string search)
         {
-            PropertiesForRent propertyForRent = _db.PropertiesForRent.Where(p => p.RentalId == RentalId).FirstOrDefault();
-            Property property = _db.Property.Where(p => p.PropertiesForRent.First().RentalId == RentalId).FirstOrDefault();
+            string searchInput = search;
+
+            //Implement elastic search or some other search engine to do this
+
+            return Index();
+        }
+
+        [HttpGet]
+        public IActionResult SpecificProperty(int rentalId)
+        {
+            PropertiesForRent propertyForRent = _db.PropertiesForRent.Where(p => p.RentalId == rentalId).FirstOrDefault();
+            Property property = _db.Property.Where(p => p.PropertiesForRent.First().RentalId == rentalId).FirstOrDefault();
 
             RentalPropertyViewModel propertyViewModel = new RentalPropertyViewModel()
             {
@@ -86,6 +96,7 @@ namespace HousingWebsite.Controllers
 
             return View(propertyViewModel);
         }
+
         public IActionResult Privacy()
         {
             return View();
