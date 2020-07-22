@@ -1,8 +1,5 @@
 ﻿using HousingWebsite.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace HousingWebsite.Mappers
 {
@@ -20,17 +17,26 @@ namespace HousingWebsite.Mappers
                 PropertyType = property.PropertyType,
                 BuildDate = property.BuildDate,
                 NoOfBedrooms = property.NoOfBedrooms,
-                Garden = property.Garden,
-                Parking = property.Parking,
+                Garden = ConvertBoolToYesNo(property.Garden),
+                Parking = ConvertBoolToYesNo(property.Parking),
                 Epcrating = property.Epcrating,
                 RentalId = property.PropertiesForRent.First().RentalId,
                 PricePcm = property.PropertiesForRent.First().PricePcm,
-                PetsAllowed = property.PropertiesForRent.First().PetsAllowed,
+                PetsAllowed = ConvertBoolToYesNo(property.PropertiesForRent.First().PetsAllowed),
                 PropertyAvailableFrom = property.PropertiesForRent.First().PropertyAvailableFrom,
                 PropertyPhotos = property.PhotoRef
             };
 
             return propertyViewModel;
+        }
+
+        private static string ConvertBoolToYesNo(bool? value)
+        {
+            if (value.HasValue)
+            {
+                return (bool)value ? "Yes" : "No";
+            }
+            return "Unknown";
         }
     }
 }

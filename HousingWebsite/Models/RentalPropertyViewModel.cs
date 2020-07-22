@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HousingWebsite.Models
 {
@@ -15,12 +12,12 @@ namespace HousingWebsite.Models
         public string PropertyType { get; set; }
         public DateTime? BuildDate { get; set; }
         public int? NoOfBedrooms { get; set; }
-        public bool? Garden { get; set; }
-        public bool? Parking { get; set; }
+        public string Garden { get; set; }
+        public string Parking { get; set; }
         public string Epcrating { get; set; }
         public int RentalId { get; set; }
         public int? PricePcm { get; set; }
-        public bool? PetsAllowed { get; set; }
+        public string PetsAllowed { get; set; }
         public DateTime? PropertyAvailableFrom { get; set; }
         public string PropertyPhotos { get; set; }
     }

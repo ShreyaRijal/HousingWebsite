@@ -1,13 +1,9 @@
-﻿using System;
+﻿using HousingWebsite.Mappers;
+using HousingWebsite.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using HousingWebsite.Models;
-using System.IO;
-using HousingWebsite.Mappers;
 
 namespace HousingWebsite.Controllers
 {
@@ -43,10 +39,7 @@ namespace HousingWebsite.Controllers
         [HttpPost]
         public IActionResult Index(string search)
         {
-            string searchInput = search;
-
             //Implement elastic search or some other search engine to do this
-
             return Index();
         }
 
@@ -59,11 +52,6 @@ namespace HousingWebsite.Controllers
             RentalPropertyViewModel propertyViewModel = RentalPropertyMapper.MapPropertyToRentalPropertyVM(property);
 
             return View(propertyViewModel);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
